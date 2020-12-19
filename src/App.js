@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { search, add, get } from "./services/Auth.service";
+import "./App.css";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  function onAdd() {
+    const data = {};
+    add("/profile", data)
+      .then((res) => {})
+      .catch((err) => console.log(err));
+  }
+  function onSearch() {
+    const data = {};
+    search("/profile", data)
+      .then((res) => {})
+      .catch((err) => console.log(err));
+  }
+  function onGet() {
+    const data = {};
+    get("/profile", data)
+      .then((res) => {})
+      .catch((err) => console.log(err));
+  }
+  useEffect(() => {
+    onAdd();
+    onSearch();
+    onGet();
+  }, []);
+
+  return <div className="App"><span>Http Example</span></div>;
 }
 
 export default App;
